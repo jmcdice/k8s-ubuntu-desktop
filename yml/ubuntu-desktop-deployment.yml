@@ -1,0 +1,31 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: mate-desktop
+  name: mate-desktop
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: mate-desktop
+  template:
+    metadata:
+      labels:
+        run: mate-desktop
+    spec:
+      containers:
+      - image: jmcdice/ubuntu-mint:latest
+        imagePullPolicy: Always
+        name: mate-desktop
+        ports:
+        - containerPort: 6080
+          protocol: TCP
+        env:
+        - name: VNC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: vnc-password
+              key: password

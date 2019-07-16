@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: mate-desktop
+  name: mate-desktop
+spec:
+  ports:
+  - nodePort: 31841
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: mate-desktop
+  type: NodePort
