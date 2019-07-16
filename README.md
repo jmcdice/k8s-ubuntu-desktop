@@ -2,7 +2,7 @@ k8s-ubuntu-desktop
 ==================
 Docker image and k8s manifests for running a web-based Linux Desktop.
 
-[![Docker Hub](https://hub.docker.com/r/jmcdice/k8s-ubuntu-desktop:latest)]
+[Docker Hub](https://hub.docker.com/r/jmcdice/k8s-ubuntu-desktop:latest)
 
 Quick Start
 -------------------------
