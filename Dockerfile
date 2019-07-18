@@ -2,7 +2,7 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND noninteractive
 MAINTAINER Joey <jmcdice@gmail.com>
 
-# RUN sed -i 's#http://archive.ubuntu.com/#http://ubuntu.mirrors.tds.net/pub/ubuntu/#' /etc/apt/sources.list
+RUN sed -i 's#http://archive.ubuntu.com/#http://ubuntu.mirrors.tds.net/pub/ubuntu/#' /etc/apt/sources.list
 
 # Packages and Desktop Stuff.
 RUN apt-get update

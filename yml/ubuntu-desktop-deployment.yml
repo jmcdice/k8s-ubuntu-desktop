@@ -3,23 +3,23 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    run: mate-desktop
-  name: mate-desktop
+    run: ubuntu-desktop
+  name: ubuntu-desktop
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: mate-desktop
+      run: ubuntu-desktop
   template:
     metadata:
       labels:
-        run: mate-desktop
+        run: ubuntu-desktop
     spec:
       containers:
-      - image: jmcdice/ubuntu-mint:latest
+      - image: jmcdice/k8s-ubuntu-desktop:latest
         imagePullPolicy: Always
-        name: mate-desktop
+        name: ubuntu-desktop
         ports:
         - containerPort: 6080
           protocol: TCP
