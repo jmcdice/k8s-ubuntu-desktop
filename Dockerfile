@@ -1,21 +1,20 @@
 FROM ubuntu:latest
+
 ENV DEBIAN_FRONTEND noninteractive
-MAINTAINER Joey <jmcdice@gmail.com>
 
-RUN sed -i 's#http://archive.ubuntu.com/#http://ubuntu.mirrors.tds.net/pub/ubuntu/#' /etc/apt/sources.list
+RUN sed -i 's#http://archive.ubuntu.com/#http://ubuntu.mirrors.tds.net/ubuntu/#' /etc/apt/sources.list
 
-# Packages and Desktop Stuff.
+# built-in packages
 RUN apt-get update
 RUN apt-get -o Dpkg::Options::='--force-confold' --force-yes -fuy dist-upgrade
 RUN apt-get install -y python-apt
 RUN apt-get install -y --no-install-recommends software-properties-common curl
-RUN apt-get install -y --no-install-recommends --allow-unauthenticated supervisor openssh-server \
-        pwgen sudo vim-common net-tools x11vnc xserver-xorg-video-dummy gtk2-engines-murrine \
-        ttf-ubuntu-font-family firefox nginx python-pip python-dev build-essential \
-        mesa-utils libgl1-mesa-dri gnome-themes-standard gtk2-engines-pixbuf \
-        gtk2-engines-murrine pinta dbus-x11 x11-utils wget tmux htop git \
-        dconf-editor apt-utils ubuntu-mate-desktop mate-terminal mate-backgrounds \
-        mate-themes mate-control-center ubuntu-mate-wallpapers 
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends --allow-unauthenticated supervisor openssh-server pwgen sudo vim-common net-tools \
+        x11vnc xserver-xorg-video-dummy ttf-ubuntu-font-family firefox \
+        nginx python-pip python-dev build-essential mesa-utils libgl1-mesa-dri \
+        dbus-x11 x11-utils wget tmux htop git dconf-editor
+RUN apt-get install -y --allow-unauthenticated ubuntu-mate-desktop ubuntu-mate-core mate-backgrounds ubuntu-mate-wallpapers
 
 # Create my user
 RUN useradd -ms /bin/bash mate
@@ -27,7 +26,7 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
 # Install VSCode
-RUN wget "https://go.microsoft.com/fwlink/?LinkID=760868" -O code.deb
+RUN wget -q "https://go.microsoft.com/fwlink/?LinkID=760868" -O code.deb
 RUN dpkg -i code.deb
 
 # Install Slack (Update: SlackApp Crashes, disabling)
