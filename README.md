@@ -32,3 +32,9 @@ http://HOSTIP:PORT/vnc.html
   $ kubectl delete -f yml/ubuntu-desktop-service.yml
 ```
 
+## Run as a docker on localhost
+```console
+  # Mount $HOME from desktop to /home/mate/mount/ inside the container
+  $ docker run -p 6080:80 --name ubuntu-desktop -v $HOME:/home/mate/mount jmcdice/k8s-ubuntu-desktop:latest
+  # Browse to: localhost:6080/vnc.html
+```
