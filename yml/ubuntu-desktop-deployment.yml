@@ -1,20 +1,20 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: ubuntu-desktop
+    app: ubuntu-desktop
   name: ubuntu-desktop
-  namespace: default
+  namespace: desktop
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: ubuntu-desktop
+      app: ubuntu-desktop
   template:
     metadata:
       labels:
-        run: ubuntu-desktop
+        app: ubuntu-desktop
     spec:
       containers:
       - image: jmcdice/k8s-ubuntu-desktop:latest

@@ -7,9 +7,10 @@ Docker image and k8s manifests for running a web-based Linux Desktop.
 Quick Start
 -------------------------
 
-### Set a VNC password 
+### Create a NS and password secret
 ```console
-  $ kubectl create secret generic -n default vnc-password --from-literal=password='my_password'
+  $ kubectl create ns desktop
+  $ kubectl create secret generic -n desktop vnc-password --from-literal=password='my_password'
 ```
 
 ### Deploy the container
@@ -17,19 +18,22 @@ Quick Start
   $ kubectl create -f yml/ubuntu-desktop-deployment.yml
 ```
 
-### Optional: Create a NodePort service
+### Optional: Create a service
 ```console
   $ kubectl create -f yml/ubuntu-desktop-service.yml
 ```
 
-### Connect to your desktop:
-http://HOSTIP:PORT/vnc.html
+### port-forward to the desktop service
+```console
+  kubectl port-forward service/ubuntu-desktop -n desktop 8080:80
+```
+
+### Access the desktop UI
+http://localhost:8080/vnc.html
 
 ## Clean up
 ```console
-  $ kubectl delete secret vnc-password
-  $ kubectl delete -f yml/ubuntu-desktop-deployment.yml
-  $ kubectl delete -f yml/ubuntu-desktop-service.yml
+  $ kubectl delete ns desktop
 ```
 
 ## Run as a docker on localhost

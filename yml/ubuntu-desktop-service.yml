@@ -1,16 +1,17 @@
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    run: ubuntu-desktop
-  name: ubuntu-desktop
-spec:
-  ports:
-  - nodePort: 31841
-    port: 80
-    protocol: TCP
-    targetPort: 80
-  selector:
-    run: ubuntu-desktop
-  type: NodePort
+  apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: ubuntu-desktop
+    name: ubuntu-desktop
+    namespace: desktop
+  spec:
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: ubuntu-desktop
+    sessionAffinity: None
+    type: ClusterIP
