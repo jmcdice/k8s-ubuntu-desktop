@@ -17,7 +17,8 @@ spec:
         app: ubuntu-desktop
     spec:
       containers:
-      - image: jmcdice/k8s-ubuntu-desktop:latest
+        #- image: jmcdice/k8s-ubuntu-desktop:latest
+      - image: fredblgr/ubuntu-novnc:22.04
         imagePullPolicy: Always
         name: ubuntu-desktop
         ports:
